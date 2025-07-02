@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .border-border {
+    @apply border border-solid border-gray-300; /* Example: A custom border */
+    /* Or more specific styles */
+    /* border-width: 1px; */
+    /* border-color: var(--your-border-color); */
+  }
+}
 @layer base {
   * {
     @apply border-border;
