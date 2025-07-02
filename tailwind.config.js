@@ -35,6 +35,23 @@ export default {
           900: '#0f172a',
         }
       },
+      // tailwind.config.js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    // ... your content paths
+  ],
+  theme: {
+    extend: {
+      colors: {
+        border: 'hsl(var(--border))', // Example using CSS variables
+        // Or a direct color value:
+        // 'border': '#e5e7eb', // A light gray color
+      },
+    },
+  },
+  plugins: [],
+};
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
         'slide-up': 'slideUp 0.3s ease-out',
