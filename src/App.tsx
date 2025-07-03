@@ -10,6 +10,7 @@ import Torrents from './pages/Torrents'
 import Music from './pages/Music'
 import Downloads from './pages/Downloads'
 import Settings from './pages/Settings'
+import Advanced from './pages/Advanced'
 import { useAppStore } from './store/appStore'
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
               <Route path="/torrents" element={<Torrents />} />
               <Route path="/music" element={<Music />} />
               <Route path="/downloads" element={<Downloads />} />
+              <Route path="/advanced" element={<Advanced />} />
               <Route path="/settings" element={<Settings />} />
             </Routes>
           </div>

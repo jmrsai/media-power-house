@@ -6,7 +6,7 @@ interface Download {
   title: string
   url: string
   platform: string
-  status: 'pending' | 'downloading' | 'completed' | 'error'
+  status: 'pending' | 'downloading' | 'completed' | 'error' | 'paused'
   progress: number
   size?: string
   thumbnail?: string
@@ -25,6 +25,10 @@ interface AppState {
     theme: 'dark' | 'light'
     autoDownload: boolean
     notifications: boolean
+    autoSync: boolean
+    aiRecommendations: boolean
+    streamingQuality: string
+    offlineMode: boolean
   }
   
   // Actions
@@ -43,9 +47,43 @@ export const useAppStore = create<AppState>()(
   persist(
     (set, get) => ({
       sidebarOpen: true,
-      downloads: [],
+      downloads: [
+        {
+          id: '1',
+          title: 'Sample Video - Tech Review 2024',
+          url: 'https://youtube.com/watch?v=sample1',
+          platform: 'YouTube',
+          status: 'downloading',
+          progress: 65,
+          size: '125 MB',
+          thumbnail: 'https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop',
+          createdAt: new Date(Date.now() - 3600000)
+        },
+        {
+          id: '2',
+          title: 'Music Album - Electronic Vibes',
+          url: 'https://music.example.com/album/2',
+          platform: 'Music',
+          status: 'completed',
+          progress: 100,
+          size: '89 MB',
+          thumbnail: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop',
+          createdAt: new Date(Date.now() - 7200000)
+        },
+        {
+          id: '3',
+          title: 'Documentary - AI Revolution',
+          url: 'https://youtube.com/watch?v=sample3',
+          platform: 'YouTube',
+          status: 'paused',
+          progress: 23,
+          size: '1.2 GB',
+          thumbnail: 'https://images.pexels.com/photos/2004161/pexels-photo-2004161.jpeg?auto=compress&cs=tinysrgb&w=300&h=200&fit=crop',
+          createdAt: new Date(Date.now() - 10800000)
+        }
+      ],
       currentlyPlaying: null,
-      searchHistory: [],
+      searchHistory: ['AI technology', 'electronic music', 'tech reviews', 'documentaries'],
       favorites: [],
       settings: {
         downloadPath: '/downloads',
@@ -53,6 +91,10 @@ export const useAppStore = create<AppState>()(
         theme: 'dark',
         autoDownload: false,
         notifications: true,
+        autoSync: true,
+        aiRecommendations: true,
+        streamingQuality: 'auto',
+        offlineMode: false,
       },
 
       toggleSidebar: () => set((state) => ({ sidebarOpen: !state.sidebarOpen })),

@@ -11,7 +11,8 @@ import {
   Settings,
   TrendingUp,
   Clock,
-  Heart
+  Heart,
+  Zap
 } from 'lucide-react'
 import { useAppStore } from '../../store/appStore'
 
@@ -26,6 +27,7 @@ const Sidebar = () => {
     { icon: Download, label: 'Torrents', path: '/torrents' },
     { icon: Music, label: 'Music', path: '/music' },
     { icon: Folder, label: 'Downloads', path: '/downloads' },
+    { icon: Zap, label: 'Advanced', path: '/advanced', badge: 'NEW' },
   ]
 
   const quickAccess = [
@@ -54,7 +56,7 @@ const Sidebar = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-200 group ${
+                className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-200 group relative ${
                   isActive
                     ? 'bg-primary-500/20 text-primary-400 border border-primary-500/30'
                     : 'hover:bg-dark-700 text-dark-300 hover:text-dark-100'
@@ -62,7 +64,14 @@ const Sidebar = () => {
               >
                 <Icon className="w-5 h-5 flex-shrink-0" />
                 {sidebarOpen && (
-                  <span className="font-medium">{item.label}</span>
+                  <>
+                    <span className="font-medium">{item.label}</span>
+                    {item.badge && (
+                      <span className="ml-auto px-2 py-1 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs rounded-full">
+                        {item.badge}
+                      </span>
+                    )}
+                  </>
                 )}
               </Link>
             )
@@ -100,6 +109,23 @@ const Sidebar = () => {
                 <div className="bg-gradient-to-r from-primary-500 to-primary-600 h-2 rounded-full w-1/3"></div>
               </div>
               <p className="text-xs text-dark-400">7.6 GB available</p>
+            </div>
+
+            {/* AI Features Promo */}
+            <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-lg p-4 space-y-2">
+              <div className="flex items-center space-x-2">
+                <Zap className="w-4 h-4 text-purple-400" />
+                <span className="text-sm font-medium text-white">AI Powered</span>
+              </div>
+              <p className="text-xs text-dark-300">
+                Experience smart recommendations and advanced features
+              </p>
+              <Link
+                to="/advanced"
+                className="block w-full text-center bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs py-2 rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all"
+              >
+                Explore Now
+              </Link>
             </div>
           </>
         )}
