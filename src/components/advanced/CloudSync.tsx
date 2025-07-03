@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Cloud, CloudOff, Sync, Check, AlertCircle, Upload, Download, Folder } from 'lucide-react'
+import { Cloud, CloudOff, FolderSync as Sync, Check, AlertCircle, Upload, Download, Folder } from 'lucide-react'
 import { useAppStore } from '../../store/appStore'
 import toast from 'react-hot-toast'
 
